@@ -7,8 +7,6 @@ import com.reactive.nequi.persistence.entities.FranchiseEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.time.LocalDateTime;
-
 @Mapper(componentModel = "spring")
 public interface IFranchiseMapper {
     Franchise toDomain(FranchiseRequestDto dto);
