@@ -90,6 +90,7 @@ jobs:
             -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" \
             -var="db_url=${{ secrets.DB_URL }}" \
             -var="db_username=${{ secrets.DB_USERNAME }}" \
+            -var="aws_region=${{ secrets.AWS_REGION }}" \
             -var="db_password=${{ secrets.DB_PASSWORD }}"
 
       - name: Terraform Apply
@@ -99,5 +100,6 @@ jobs:
             -var="aws_account_id=${{ secrets.AWS_ACCOUNT_ID }}" \
             -var="db_url=${{ secrets.DB_URL }}" \
             -var="db_username=${{ secrets.DB_USERNAME }}" \
+            -var="aws_region=${{ secrets.AWS_REGION }}" \
             -var="db_password=${{ secrets.DB_PASSWORD }}"
 
