@@ -1,0 +1,118 @@
+plugins {
+    id 'java'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'jacoco-report-aggregation'
+}
+
+allprojects {
+    group = 'com.reactive.nequi'
+    version = '1.0.0'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
+    apply plugin: 'io.spring.dependency-management'
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:4.0.2"
+        }
+    }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    }
+
+    jacoco {
+        toolVersion = "0.8.11"
+    }
+
+    test {
+        useJUnitPlatform()
+        finalizedBy jacocoTestReport
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            csv.required.set(false)
+        }
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+def coverageModules = [
+        project(':franchise-domain'),
+//        project(':franchise-infrastructure')
+]
+tasks.register('jacocoRootReport', JacocoReport) {
+
+    dependsOn(coverageModules.collect { it.path + ':test' })
+
+    additionalSourceDirs.from files(
+            coverageModules.collect { it.sourceSets.main.allSource.srcDirs }
+    )
+
+    sourceDirectories.from files(
+            coverageModules.collect { it.sourceSets.main.allSource.srcDirs }
+    )
+
+    classDirectories.setFrom(
+            files(coverageModules.collect {
+                fileTree(dir: it.sourceSets.main.output, exclude: [
+                        //domain
+                        '**/com/reactive/nequi/exceptions/**',
+                        '**/com/reactive/nequi/util/**',
+
+                        //infrastructure
+                        '**/com/reactive/nequi/errors/**',
+                        '**/com/reactive/nequi/mappers/**',
+                        '**/com/reactive/nequi/utils/**',
+                        '**/com/reactive/nequi/persistence/**',
+                        '**/com/reactive/nequi/factory/**',
+                        '**/com/reactive/nequi/errors/**',
+                        '**/com/reactive/nequi/config/**',
+                ])
+            })
+    )
+
+    executionData.from files(
+            coverageModules.collect {
+                it.layout.buildDirectory.file("jacoco/test.exec").get().asFile
+            }
+    )
+
+    reports {
+        html.required.set(true)
+        xml.required.set(true)
+        csv.required.set(false)
+    }
+
+    doFirst {
+        println "Generando reporte Jacoco para: ${coverageModules*.name}"
+    }
+}
+
+tasks.register('jacocoCoverageCheck', JacocoCoverageVerification) {
+
+    dependsOn(tasks.named('jacocoRootReport'))
+
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.80
+            }
+        }
+    }
+}

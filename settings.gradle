@@ -1,0 +1,3 @@
+rootProject.name = 'ms-franchise-neg'
+
+include("franchise-domain", "franchise-infrastructure", "franchise-application")
