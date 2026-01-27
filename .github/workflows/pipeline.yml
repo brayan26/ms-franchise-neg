@@ -3,9 +3,6 @@ name: Build & Push to AWS ECR
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ main ]
-    types: [ opened, synchronize ]
 
 jobs:
   compile:
@@ -24,6 +21,7 @@ jobs:
         run: ./gradlew clean build
 
   build-and-push:
+    needs: [ compile ]
     runs-on: ubuntu-latest
 
     steps:
