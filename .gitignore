@@ -118,6 +118,7 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
+terraform/terraform.tfvars
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
