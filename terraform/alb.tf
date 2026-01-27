@@ -19,6 +19,7 @@ resource "aws_security_group" "alb_sg" {
 
 resource "aws_lb" "this" {
   name               = "${var.project_name}-alb"
+  internal           = false
   load_balancer_type = "application"
   subnets            = data.aws_subnets.default.ids
   security_groups    = [aws_security_group.alb_sg.id]
@@ -35,6 +36,12 @@ resource "aws_lb_target_group" "this" {
   health_check {
     path = "/actuator/health"
   }
+}
+
+resource "aws_apigatewayv2_vpc_link" "this" {
+  name               = "${var.project_name}-vpc-link"
+  subnet_ids         = data.aws_subnets.default.ids
+  security_group_ids = [aws_security_group.alb_sg.id]
 }
 
 resource "aws_lb_listener" "http" {
