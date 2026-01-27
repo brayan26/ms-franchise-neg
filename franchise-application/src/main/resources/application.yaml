@@ -1,0 +1,17 @@
+server:
+  address: 0.0.0.0
+  port: 8081
+
+spring:
+  application:
+    name: ms-franchise-neg
+  sql:
+    init:
+      mode: always
+      platform: postgres
+  r2dbc:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    pool:
+      max-size: 10
+    url: r2dbc:postgresql://${DB_URL}
