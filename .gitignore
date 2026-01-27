@@ -119,6 +119,8 @@ cmake-build-*/
 
 # IntelliJ
 terraform/terraform.tfvars
+terraform/.terraform
+.terraform.lock*
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
