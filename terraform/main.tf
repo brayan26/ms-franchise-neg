@@ -1,3 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket         = "ms-franchise-neg-tfstate"
+    key            = "dev/terraform.tfstate"
+    region         = var.aws_region
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+  }
+}
+
 data "aws_vpc" "default" {
   default = true
 }
