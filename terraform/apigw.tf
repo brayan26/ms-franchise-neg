@@ -6,7 +6,7 @@ resource "aws_apigatewayv2_api" "this" {
 resource "aws_apigatewayv2_integration" "alb" {
   api_id           = aws_apigatewayv2_api.this.id
   integration_type = "HTTP_PROXY"
-  integration_uri  = aws_lb_listener.http.arn
+  integration_uri  = "http://${aws_lb.this.dns_name}"
   integration_method = "ANY"
 }
 
