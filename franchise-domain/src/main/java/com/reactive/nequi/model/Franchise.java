@@ -5,5 +5,5 @@ import lombok.Builder;
 import java.time.LocalDateTime;
 
 @Builder
-public record Franchise(String id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
+public record Franchise(Long id, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
 }
