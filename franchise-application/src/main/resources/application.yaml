@@ -10,8 +10,8 @@ spring:
       mode: always
       platform: postgres
   r2dbc:
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    username: ${DB_USERNAME:reactive}
+    password: ${DB_PASSWORD:admin123}
     pool:
       max-size: 10
-    url: r2dbc:postgresql://${DB_URL}
+    url: r2dbc:postgresql://${DB_URL:localhost:5432/nequi}
