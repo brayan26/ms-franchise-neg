@@ -100,3 +100,4 @@ jobs:
             -var="db_url=${{ secrets.DB_URL }}" \
             -var="db_username=${{ secrets.DB_USERNAME }}" \
             -var="db_password=${{ secrets.DB_PASSWORD }}"
+
