@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "this" {
   container_definitions = jsonencode([
     {
       name  = var.project_name
-      image = "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.project_name}:latest"
+      image = "${var.aws_account_id}.dkr.ecr.${var.aws_region}.amazonaws.com/${var.project_name}:${var.image_tag}"
 
       portMappings = [{ containerPort = 8081 }]
 
