@@ -30,7 +30,7 @@ resource "aws_apigatewayv2_route" "create_franchise" {
 
 resource "aws_apigatewayv2_route" "update_franchise" {
   api_id    = aws_apigatewayv2_api.this.id
-  route_key = "PACH /franchise/v1/{id}/update"
+  route_key = "PATCH /franchise/v1/{id}/update"
   target    = "integrations/${aws_apigatewayv2_integration.alb.id}"
 }
 
