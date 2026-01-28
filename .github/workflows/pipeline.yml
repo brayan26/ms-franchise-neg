@@ -58,9 +58,8 @@ jobs:
           docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
 
   destroy:
-    name: Destroy Infrastructure (manual)
+    name: Destroy Infrastructure (automatic)
     runs-on: ubuntu-latest
-    if: github.event.inputs.destroy == 'true'
 
     steps:
       - name: Checkout code
