@@ -1,7 +1,9 @@
 dependencies {
-    //Test
+    //Coverage
     testImplementation 'org.jacoco:org.jacoco.core:0.8.11'
+    //Reactor
     testImplementation 'io.projectreactor:reactor-test'
+    //JUnit
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     //utils
