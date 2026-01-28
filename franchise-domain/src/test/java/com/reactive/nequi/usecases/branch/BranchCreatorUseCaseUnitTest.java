@@ -1,18 +1,25 @@
 package com.reactive.nequi.usecases.branch;
 
+import com.reactive.nequi.exceptions.DatabaseUnavailableException;
+import com.reactive.nequi.exceptions.ServiceUnavailableException;
 import com.reactive.nequi.model.Branch;
 import com.reactive.nequi.mother.BranchMotherObject;
 import com.reactive.nequi.repositories.IBranchRepositoryPort;
+import com.reactive.nequi.usecases.Constants;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class BranchCreatorUseCaseUnitTest {
     private IBranchRepositoryPort repository;
     private BranchCreatorUseCase useCase;
@@ -35,5 +42,24 @@ public class BranchCreatorUseCaseUnitTest {
                     Assertions.assertEquals(1L, response.id());
                     Assertions.assertEquals(name, response.name());
                 }).verifyComplete();
+    }
+
+    @Test
+    @DisplayName("Should be return a ServiceUnavailableException")
+    void shouldMapAnyErrorToServiceUnavailableException() {
+        RuntimeException dbError = new RuntimeException("DB down");
+        DatabaseUnavailableException exception = new DatabaseUnavailableException(dbError);
+
+        Branch branch = BranchMotherObject.random();
+        when(repository.create(branch)).thenReturn(Mono.error(exception));
+
+        StepVerifier.create(useCase.execute(branch))
+                .expectErrorSatisfies(error -> {
+                    Assertions.assertInstanceOf(ServiceUnavailableException.class, error);
+                    Assertions.assertEquals(Constants.DATABASE_ERROR_MESSAGE, error.getMessage());
+                })
+                .verify();
+
+        verify(repository).create(branch);
     }
 }

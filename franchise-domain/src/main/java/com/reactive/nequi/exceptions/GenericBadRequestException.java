@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class GenericBadRequestException extends RuntimeException {
+public class GenericBadRequestException extends DomainException {
    private final ErrorResponse error;
 
    public GenericBadRequestException(String message, ErrorResponse error) {
