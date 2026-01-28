@@ -4,12 +4,12 @@ import io.github.resilience4j.bulkhead.Bulkhead;
 import io.github.resilience4j.bulkhead.BulkheadConfig;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
+import io.netty.handler.timeout.TimeoutException;
 import io.r2dbc.spi.R2dbcException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;
-import java.util.concurrent.TimeoutException;
 
 @Configuration
 public class ResilienceConfig {
