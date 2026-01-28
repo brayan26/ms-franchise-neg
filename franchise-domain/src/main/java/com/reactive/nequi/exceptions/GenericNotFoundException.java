@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class GenericNotFoundException extends RuntimeException {
+public class GenericNotFoundException extends DomainException {
    private final ErrorResponse error;
 
    public GenericNotFoundException(String message, ErrorResponse error) {
