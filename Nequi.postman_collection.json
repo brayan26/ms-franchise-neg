@@ -1,0 +1,331 @@
+{
+  "info": {
+    "_postman_id": "6c26c850-3f96-4d89-a1b9-b7a7d9c2d7f0",
+    "name": "Nequi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45935391"
+  },
+  "item": [
+    {
+      "name": "product",
+      "item": [
+        {
+          "name": "/product/v1/create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"BBC\",\n    \"stock\": 10,\n    \"branchId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8081/product/v1/create",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "product",
+                "v1",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/product/v1/{id}/update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8081/product/v1/{{productId}}/update",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "product",
+                "v1",
+                "{{productId}}",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/product/v1/{productId}/findOne",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8081/product/v1/{{productId}}/findOne",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "product",
+                "v1",
+                "{{productId}}",
+                "findOne"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/product/v1/{id}/delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8081/product/v1/{{productId}}/delete",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "product",
+                "v1",
+                "{{productId}}",
+                "delete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/product/v1/{franchiseId}/findTopProductByBranch",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8081/product/v1/{{franchiseId}}/findTopProductByBranch",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "product",
+                "v1",
+                "{{franchiseId}}",
+                "findTopProductByBranch"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "branch",
+      "item": [
+        {
+          "name": "/branch/v1/create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Recreo\",\n    \"address\": \"Calle 1D 21 40\",\n    \"franchiseId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8081/branch/v1/create",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "branch",
+                "v1",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/branch/v1/{id}/update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Recreo\",\n    \"address\": \"Carrera 43 #61 22\",\n    \"franchiseId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8081/branch/v1/{{branchId}}/update",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "branch",
+                "v1",
+                "{{branchId}}",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/branch/v1/{franchiseId}/findAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8081/branch/v1/{{franchiseId}}/findAll",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "branch",
+                "v1",
+                "{{franchiseId}}",
+                "findAll"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "franchise",
+      "item": [
+        {
+          "name": "/franchise/v1/create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"OXOXO Barranquilla\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:8081/franchise/v1/create",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "franchise",
+                "v1",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/franchise/v1/{id}/findOne",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8081/franchise/v1/{{franchiseId}}/findOne",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "franchise",
+                "v1",
+                "{{franchiseId}}",
+                "findOne"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/franchise/v1/findAll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:8081/franchise/v1/findAll",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "franchise",
+                "v1",
+                "findAll"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/franchise/v1/{id}/update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"OXOXO Barranquilla\"\n}"
+            },
+            "url": {
+              "raw": "localhost:8081/franchise/v1/{{franchiseId}}}/update",
+              "host": [
+                "localhost"
+              ],
+              "port": "8081",
+              "path": [
+                "franchise",
+                "v1",
+                "{{franchiseId}}}",
+                "update"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
