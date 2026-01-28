@@ -10,6 +10,10 @@ resource "aws_ecs_task_definition" "this" {
   memory                   = "1024"
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
 
+  depends_on = [
+    aws_cloudwatch_log_group.ecs
+  ]
+
   container_definitions = jsonencode([
     {
       name  = var.project_name
@@ -18,7 +22,7 @@ resource "aws_ecs_task_definition" "this" {
       portMappings = [{ containerPort = 8081 }]
 
       environment = [
-        { name = "DB_URL",      value = var.db_url },
+        { name = "DB_URL", value = var.db_url },
         { name = "DB_USERNAME", value = var.db_username },
         { name = "DB_PASSWORD", value = var.db_password }
       ]
@@ -49,8 +53,8 @@ resource "aws_ecs_service" "this" {
   }
 
   network_configuration {
-    subnets         = data.aws_subnets.default.ids
-    security_groups = [aws_security_group.ecs_sg.id]
+    subnets          = data.aws_subnets.default.ids
+    security_groups  = [aws_security_group.ecs_sg.id]
     assign_public_ip = true
   }
 
