@@ -22,3 +22,28 @@ resource "aws_apigatewayv2_stage" "default" {
   auto_deploy = true
 }
 
+resource "aws_apigatewayv2_route" "create_franchise" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "POST /franchise/v1/create"
+  target    = "integrations/${aws_apigatewayv2_integration.alb.id}"
+}
+
+resource "aws_apigatewayv2_route" "update_franchise" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "PACH /franchise/v1/{id}/update"
+  target    = "integrations/${aws_apigatewayv2_integration.alb.id}"
+}
+
+resource "aws_apigatewayv2_route" "find_one_franchise" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "GET /franchise/v1/{id}/findOne"
+  target    = "integrations/${aws_apigatewayv2_integration.alb.id}"
+}
+
+resource "aws_apigatewayv2_route" "find_all_franchise" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "GET /franchise/v1/findAll"
+  target    = "integrations/${aws_apigatewayv2_integration.alb.id}"
+}
+
+
