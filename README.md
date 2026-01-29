@@ -48,9 +48,9 @@ build jar: sh ./gradlew clean build
 run test: sh ./gradlew clean test
 ```
 
-## Swagger
-Access locally via the route http://localhost:8001/api/v1/swagger-ui/index.html
-Access remote via the route [http://167.172.3.41/api/v1/swagger-ui/index.html](http://167.172.3.41/api/v1/webjars/swagger-ui/index.html)
+## Deploy
+Access locally via the route [http://localhost:8001/actuator/health](http://localhost:8001/actuator/health)
+Access remote via the route [http://ms-franchise-neg-alb-1516202236.us-east-2.elb.amazonaws.com/actuator/health](http://ms-franchise-neg-alb-1516202236.us-east-2.elb.amazonaws.com/actuator/health)
 
 ## DDD and Clean Architecture
 
