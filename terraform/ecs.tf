@@ -55,7 +55,7 @@ resource "aws_ecs_service" "this" {
   network_configuration {
     subnets          = data.aws_subnets.default.ids
     security_groups  = [aws_security_group.ecs_sg.id]
-    assign_public_ip = true
+    assign_public_ip = false
   }
 
   depends_on = [aws_lb_listener.http]
