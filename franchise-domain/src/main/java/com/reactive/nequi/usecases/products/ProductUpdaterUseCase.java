@@ -29,6 +29,7 @@ public record ProductUpdaterUseCase(
                 .id(product.id())
                 .name(command.product().name())
                 .stock(command.product().stock())
+                .branchId(command.product().branchId())
                 .createdAt(product.createdAt())
                 .updatedAt(LocalDateTime.now())
                 .build();
